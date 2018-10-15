@@ -1,0 +1,7 @@
+.Rproj
+.httr-oauth
+.Rhistory
+auth.R
+datafiles/
+datafiles/*
+datafiles*
