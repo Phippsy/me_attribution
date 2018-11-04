@@ -71,7 +71,7 @@ att_models_trended <- map2_df(dates_start, dates_end, trendable_att)
 
 # Plot the trended view
 att_models_trended %>% 
-  mutate(channel_name = str_replace_all(channel_name, ".*unavailable.*", "Affiliate"))
+  mutate(channel_name = str_replace_all(channel_name, ".*unavailable.*", "Affiliate")) %>% 
   filter(model_type == "markov_model") %>% 
   ggplot(aes(start, 
              attribution_value, 
