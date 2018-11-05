@@ -46,7 +46,7 @@ ggsave("example_models.png", width = 9.5,
 
 
 # Trended attribution values over time, by channel
-trendable_att <- function(start, end) {
+trend_att <- function(start, end) {
   view_id <- "your_view_id"
   goal_slot <- "04" 
   
@@ -62,10 +62,13 @@ trendable_att <- function(start, end) {
   att_models
 }
 
-dates_start <- seq.Date(from = as.Date("2017-04-01"), 
-                       by = "month", length.out = 8)
-dates_end <- seq.Date(from = as.Date("2017-04-30"),
-                       by = "month", length.out = 8)
+# Use possibly, so the function doesn't fail in case of zero data
+trendable_att <- possibly(trend_att, otherwise = NULL)
+
+dates_start <- seq.Date(from = as.Date("2018-04-01"), 
+                        by = "month", length.out = 10)
+dates_end <- seq.Date(from = as.Date("2018-05-01"),
+                      by = "month", length.out = 10) - 1
 
 att_models_trended <- map2_df(dates_start, dates_end, trendable_att)
 
